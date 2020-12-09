@@ -13,14 +13,14 @@
 </head>
 
 <body>
-    <div class="topcorner">timer will go here</div>
+    <span class="topcorner" id="countdown">60</span>
 
     <div class="container d-flex justify-content-center">
 
         <div id="question-box" class="flex-column flex-center">
             
             <h1>Coding Quiz</h1>
-            <button type="button" class="btn btn-primary">Begin</button>
+            <button type="button" class="btn btn-primary" id="start-button">Begin</button>
             <button type="button" class="btn btn-primary">Highscores</button>
          
             <div id="question">
@@ -36,24 +36,24 @@
                     0
                 </h1>
             </div>
-            <h1 id="question-one">
+            <h1 id="display-question">
                 What is the answer?
             </h1>
             <div class="choices-container">
                 <button type="button" class="btn btn-primary" id="choice-option" data-number="1">A)</button>
-                <p class="choice-text">Here is what A is</p>
+                <p class="choice-text" data-number="1">Here is what A is</p>
             </div>
             <div class="choices-container">
                 <button type="button" class="btn btn-primary" id="choice-option" data-number="2">B)</button>
-                <p class="choice-text">Here is what B is</p>
+                <p class="choice-text" data-number="2">Here is what B is</p>
             </div>
             <div class="choices-container">
                 <button type="button" class="btn btn-primary" id="choice-option" data-number="3">C)</button>
-                <p class="choice-text">Here is what C is</p>
+                <p class="choice-text" data-number="3">Here is what C is</p>
             </div>
             <div class="choices-container">
                 <button type="button" class="btn btn-primary" id="choice-option" data-number="4">D)</button
-                <p class="choice-text"> Here is what D is</p>
+                <p class="choice-text" data-number="4"> Here is what D is</p>
             </div>
         </div>
     </div>
