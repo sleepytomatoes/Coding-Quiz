@@ -17,45 +17,49 @@
 
     <div class="container d-flex justify-content-center">
 
-        <div id="question-box" class="flex-column flex-center">
+        <div class="flex-column justify-center">
             
             <h1>Coding Quiz</h1>
-            <button type="button" class="btn btn-primary" id="start-button">Begin</button>
-            <button type="button" class="btn btn-primary highScore">Highscores</button>
+            <button type="button" class="btn btn-primary button-spacing" id="start-button">Begin</button>
+            <button type="button" class="btn btn-primary button-spacing" id="high-scores">Highscores</button>
          
-            <div id="question">
-                <div class="question-item">
-                    <p id="progress-text">Questions remaining</p>
-                </div>
-            </div>
-            <div class="question-item">
-                <p class="display-score">
+            <div class="row question-item">
+                <div class="col display-score">
                     Score:
-                </p>
-                <h1 class="display-score-text" id="score">
+                <h1 class="display-score-text">
                     0
                 </h1>
             </div>
-            <h1 id="display-question">
+                <div class="col">Questions remaining:
+                <h1 class="questions-remaining">
+                    4
+                </h1>
+            </div>
+            </div>
+
+            <div id="question-box">
+                <h1 id="display-question">
                 What is the answer?
             </h1>
             <div class="choices-container">
-                <button type="button" class="btn btn-primary" id="choice-option">A)</button>
+                <p class="choice-prefix">A)</p>
                 <p class="choice-text" data-number="1">Here is what A is</p>
             </div>
             <div class="choices-container">
-                <button type="button" class="btn btn-primary" id="choice-option">B)</button>
+                <p class="choice-prefix">B)</p>
                 <p class="choice-text" data-number="2">Here is what B is</p>
             </div>
             <div class="choices-container">
-                <button type="button" class="btn btn-primary" id="choice-option">C)</button>
+                <p class="choice-prefix">C)</p>
                 <p class="choice-text" data-number="3">Here is what C is</p>
             </div>
             <div class="choices-container">
-                <button type="button" class="btn btn-primary" id="choice-option">D)</button>
+                <p class="choice-prefix">D)</p>
                 <p class="choice-text" data-number="4">Here is what D is</p>
             </div>
         </div>
+    </div>
+
     </div>
 <script src="./game.js"></script>
 </body>

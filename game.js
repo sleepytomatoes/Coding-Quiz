@@ -1,8 +1,8 @@
 // Variables declared in reference to ids and classes in html document
-// var selectedAnswerCapLetter = Array.from(document.querySelectorAll("#choice-option"));
 const choices = Array.from(document.querySelectorAll(".choice-text"));
-var scoreText = document.querySelector("#display-score");
 const question = document.getElementById("display-question");
+var scoreText = document.querySelector(".display-score-text");
+var remainingQuestions = document.querySelector(".questions-remaining")
 var startButton = document.querySelector("#start-button")
 
 // Local variables declared to be used in functions below
@@ -15,7 +15,7 @@ var availableQuestions = [];
 startButton.addEventListener("click", startTimer);
 
 // Questions object created for quiz
-var questions = [
+let questions = [
     {
         question: "What is a string?",
         choice1: "yarn",
@@ -72,9 +72,10 @@ function startGame() {
     getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem("mostRecentScore", score)
-    }
+    } 
     
     questionCounter++;
+    remainingQuestions.innerText = questionCounter + "/" + MAX_QUESTIONS;
     /* a new constant is declared to randomly select questions from our object questions and display them via the 
      variable currentQuestion */
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
@@ -97,9 +98,12 @@ choices.forEach(choice => {
 
         acceptAnswer = false;
         const selectedChoice = e.target;
-        const selectedAnswer = selectedChoice.dataset["number"];
+        const selectedAnswer = selectedChoice.dataset['number'];
 
-        console.log(selectedAnswer, currentQuestion.answer)
+        if (selectedAnswer == currentQuestion.answer) {
+            keepScore(CORRECT_SCORE);
+        }
+        
         getNewQuestion();
     });
 });
@@ -108,6 +112,8 @@ startGame();
 getNewQuestion();
 
 function startTimer() {
+  document.getElementById("question-box").style.display = "block";
+
     var counter = 60;
     setInterval(function() {
       counter--;
@@ -121,3 +127,8 @@ function startTimer() {
       }
     }, 1000);
   }
+
+keepScore = num => {
+    score += num;
+    scoreText.innerText = score;
+}
