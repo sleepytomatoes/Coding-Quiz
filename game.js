@@ -71,27 +71,34 @@ function startGame() {
 // getNewQuestion increments the questionCounter as the user moves through the quiz
     getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        localStorage.setItem("mostRecentScore", score)
+        // saves score to local storage and navigates to end page
+        localStorage.setItem("mostRecentScore", score);
+        return window.location.assign("./endpage.html");
     } 
-    
+    questionCounter = 0;
     questionCounter++;
+    // displays progress while taking quiz
     remainingQuestions.innerText = questionCounter + "/" + MAX_QUESTIONS;
+    console.log(remainingQuestions)
     /* a new constant is declared to randomly select questions from our object questions and display them via the 
      variable currentQuestion */
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
     question.innerText = currentQuestion.question;
 
+    // displays choices as well as references the datasets in HTML
     choices.forEach(choice => {
         const number = choice.dataset['number'];
         choice.innerText = currentQuestion['choice' + number];
     });
 
+    // as the user moves through the questions, the same one will not be displayed again
     availableQuestions.splice(questionIndex, 1);
 
     acceptAnswer = true;
 };
 
+// click events for the user choosing an answer, if they are correct their score will increment via keepScore()
 choices.forEach(choice => {
     choice.addEventListener("click", e => {
         if(!acceptAnswer) return
@@ -111,6 +118,7 @@ choices.forEach(choice => {
 startGame();
 getNewQuestion();
 
+// startTimer deals with our countdown display and sets the timer to countdown from 60 seconds to 0
 function startTimer() {
   document.getElementById("question-box").style.display = "block";
 
@@ -128,6 +136,7 @@ function startTimer() {
     }, 1000);
   }
 
+// keepScore increments our score display
 keepScore = num => {
     score += num;
     scoreText.innerText = score;
